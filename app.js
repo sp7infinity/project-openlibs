@@ -109,7 +109,7 @@ app.use(
           "'self'",
           "blob:",
           "data:",
-          "https://res.cloudinary.com/sp7infinity/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
+          "https://res.cloudinary.com/sp7infinity/",
           "https://images.unsplash.com/",
           "https://unsplash.com/",
         ],
@@ -130,7 +130,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
   if (!["/login", "/"].includes(req.originalUrl)) {
     req.session.returnTo = req.originalUrl;
-  } else req.session.returnTo = "/campgrounds";
+  } else req.session.returnTo = "/libraries";
   res.locals.currentUser = req.user;
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
@@ -138,8 +138,8 @@ app.use((req, res, next) => {
 });
 
 app.use("/", userRoutes);
-app.use("/campgrounds", campgroundRoutes);
-app.use("/campgrounds/:id/reviews", reviewRoutes);
+app.use("/libraries", campgroundRoutes);
+app.use("/libraries/:id/reviews", reviewRoutes);
 
 app.get("/", (req, res) => {
   res.render("home");
